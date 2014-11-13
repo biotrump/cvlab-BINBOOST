@@ -1,0 +1,54 @@
+			       ----------
+                           Boosted Descriptors
+                               ----------
+
+This software is an implementation of the boosted descriptors presented in the following papers:
+
+[1] T. Trzcinski, M. Christoudias, P. Fua, V. Lepetit. Boosting Binary Keypoint Descriptors. Computer Vision and Pattern Recognition (CVPR) 2013.
+[2] T. Trzcinski, M. Christoudias, V. Lepetit, P. Fua. Learning Image Descriptors with the Boosting-Trick. Neural Information Processing Systems (NIPS) 2012. 
+
+The code is released under the GNU General Public License V2 (attached within this package).
+
+COMPILATION:
+
+Type
+
+$ make
+
+to  compile  the  code  and   generate  the  executable 'DBRIEF_demo'.
+
+The code depends  on OpenCV-2.4 or later, so you should  first install 
+and make sure that pkg-config can locate it.  To test it, type
+
+$ pkg-config  opencv --libs  --cflags
+
+and you should get a list of compiler flags.
+
+Important Notices:
+
+1) This demo relies on  Hamming Distance  calculation.  Some  of new
+generation  processors support SSE4.2  instructions which  includes an
+instruction  called   POPCNT  which  enables   fast  Hamming  Distance
+calculation.   In g++  SSE4.2 instructions  are enabled  with -msse4.2
+flag. By  default, this  flag is set  in the Makefile.   Therefore, if
+your instruction  set does  not support SSE4.2  instructions, although
+this code compiles perfectly, it  will crash giving an error message.
+If  you get such  an error,  please open  Makefile with  your favorite
+editor and remove -msse4.2 flag.
+
+USAGE:
+
+./main (--extract <imgFile> <outputFile> <descriptor>
+          	| --match <imgFile1> <imgFile2> <descriptor>)
+
+Descriptor names: BGM, LBGM, BINBOOST(-64/128/256)
+
+Example usage:
+$ ./main --match graf/img1.ppm graf/img2.ppm binboost-256
+
+Image of matched images should be saved to 'matches.png'.
+
+FOR REPORTING BUGS and FEEDBACK:
+Please send an email to Tomasz Trzcinski: tomasz.trzcinski@epfl.ch 
+and/or Mario Christoudias: mario.christoudias@epfl.ch 
+and/or Vincent Lepetit: vincent.lepetit@epfl.ch.
